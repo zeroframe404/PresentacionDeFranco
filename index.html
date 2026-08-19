@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=5">
+<meta name="theme-color" content="#fbfcfe" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0b1828" media="(prefers-color-scheme: dark)">
+
+<title>Franco Martínez · Estudio Jurídico — Carta de presentación</title>
+<meta name="description" content="Carta de presentación de Franco Agustín Martínez Pandiani, abogado. Gestión de siniestros junto a productores asesores de seguros.">
+<meta name="author" content="Franco Agustín Martínez Pandiani">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_AR">
+<meta property="og:title" content="Franco Martínez · Estudio Jurídico">
+<meta property="og:description" content="Gestión de siniestros junto a productores asesores de seguros.">
+
+<!-- Evita el parpadeo de tema: se aplica antes de pintar -->
+<script>
+(function(){
+  try{
+    var t = localStorage.getItem('fm-theme');
+    if(!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', t);
+  }catch(e){ document.documentElement.setAttribute('data-theme','light'); }
+})();
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..800;1,400..600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="assets/css/styles.css">
+<link rel="stylesheet" href="assets/css/slides.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%231e3a5f'/><text x='50' y='71' font-size='52' font-family='Georgia,serif' font-weight='bold' fill='white' text-anchor='middle'>FM</text></svg>">
+</head>
+<body class="at-start">
+
+<!-- ── Fondo ─────────────────────────────────────────────────── -->
+<div class="backdrop" aria-hidden="true">
+  <div class="backdrop__grid"></div>
+  <div class="wash wash--a"></div>
+  <div class="wash wash--b"></div>
+  <div class="backdrop__band"></div>
+  <div class="backdrop__grain"></div>
+</div>
+
+<!-- ── Carga ─────────────────────────────────────────────────── -->
+<div class="loader" id="loader" aria-hidden="true">
+  <div class="loader__mark">FM</div>
+  <div class="loader__bar"><i></i></div>
+</div>
+
+<!-- ── Barra superior ────────────────────────────────────────── -->
+<header class="topbar">
+  <a class="brand" id="brand" href="#/1" data-goto="0" aria-label="Ir a la portada"></a>
+
+  <div class="topbar__actions">
+    <span class="counter" aria-live="polite" aria-atomic="true">
+      <b id="counterNow">01</b><i>/</i><span id="counterTotal">01</span>
+    </span>
+    <button class="iconbtn" id="btnTheme" type="button" title="Cambiar tema (T)" aria-label="Cambiar tema"></button>
+    <button class="iconbtn" id="btnFull"  type="button" title="Pantalla completa (F)" aria-label="Pantalla completa"></button>
+    <button class="iconbtn" id="btnMenu"  type="button" title="Índice (O)" aria-label="Abrir índice" aria-expanded="false" aria-controls="overview"></button>
+  </div>
+</header>
+
+<!-- ── Diapositivas ──────────────────────────────────────────── -->
+<main class="deck" id="deck" aria-roledescription="carrusel" aria-label="Carta de presentación"></main>
+
+<!-- ── Controles ─────────────────────────────────────────────── -->
+<button class="arrow arrow--prev" id="btnPrev" type="button" aria-label="Anterior"></button>
+<button class="arrow arrow--next" id="btnNext" type="button" aria-label="Siguiente"></button>
+
+<nav class="dots" id="dots" aria-label="Navegación de diapositivas"></nav>
+<div class="progress" aria-hidden="true"><i id="progressBar"></i></div>
+
+<p class="hint" id="hint">
+  <span class="hint__desktop">Navegá con <kbd>←</kbd> <kbd>→</kbd> o la rueda del mouse</span>
+  <span class="hint__touch">Deslizá para navegar</span>
+</p>
+
+<!-- ── Índice ────────────────────────────────────────────────── -->
+<aside class="overview" id="overview" aria-hidden="true" aria-label="Índice de la presentación">
+  <div class="overview__head">
+    <h2>Índice</h2>
+    <button class="iconbtn iconbtn--ghost" id="btnCloseOverview" type="button" aria-label="Cerrar índice"></button>
+  </div>
+  <div class="overview__grid" id="overviewGrid"></div>
+  <p class="overview__foot" id="overviewFoot"></p>
+</aside>
+<div class="scrim" id="scrim"></div>
+
+<script src="assets/js/icons.js"></script>
+<script src="assets/js/content.js"></script>
+<script src="assets/js/render.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>
