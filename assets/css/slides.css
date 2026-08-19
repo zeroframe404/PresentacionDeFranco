@@ -143,7 +143,7 @@ html[data-theme="dark"] .shape--navy{
 .sum p{font-size:.9rem;color:var(--text-soft);line-height:1.62}
 
 /* ═══ CONTACTO ═══════════════════════════════════════════════ */
-.contact{width:100%;max-width:900px;margin-inline:auto;text-align:center;
+.contact{width:100%;max-width:1000px;margin-inline:auto;text-align:center;
   display:flex;flex-direction:column;align-items:center}
 .contact .lockup{margin-bottom:clamp(26px,4.4vh,46px)}
 .contact .kicker{margin-bottom:16px}
@@ -151,8 +151,11 @@ html[data-theme="dark"] .shape--navy{
   letter-spacing:.3em;text-transform:uppercase;color:var(--text-faint)}
 .contact .rule{margin:clamp(24px,3.6vh,34px) auto}
 
-.fields{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(10px,1.4vw,16px);width:100%;
-  margin-top:clamp(8px,1.4vh,16px)}
+/* Dos columnas para los datos breves; el dato de varias líneas ocupa
+   la fila completa, que es lo que necesita para no partirse. */
+.fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:clamp(10px,1.4vw,16px);width:100%;margin-top:clamp(8px,1.4vh,16px)}
+.field--wide{grid-column:1 / -1}
 .field{display:flex;align-items:center;gap:15px;text-align:left;
   padding:clamp(16px,2vw,22px);background:var(--surface-2);border:1px solid var(--line);
   transition:transform .5s var(--ease),background .5s var(--ease),box-shadow .5s var(--ease)}
@@ -164,8 +167,24 @@ a.field:hover{transform:translateY(-4px);background:var(--surface);box-shadow:va
 .field__txt{min-width:0}
 .field__txt small{display:block;font-size:9.5px;font-weight:600;letter-spacing:.22em;
   text-transform:uppercase;color:var(--text-faint);margin-bottom:5px}
-.field__txt b{display:block;font-size:.96rem;font-weight:600;color:var(--heading);word-break:break-word}
+.field__txt b{display:block;font-size:.92rem;font-weight:600;color:var(--heading);
+  overflow-wrap:anywhere;line-height:1.4}
 .field__txt b.is-pending{color:var(--text-faint);font-weight:500;font-style:italic}
+
+/* Dato con varias líneas (por ejemplo, dos matrículas).
+   Grid de dos columnas para que las etiquetas y los valores alineen. */
+.field__list{display:grid;grid-template-columns:auto 1fr;gap:6px 11px;align-items:baseline}
+.field__list>span{display:contents}
+.field__list i{font-style:normal;font-weight:600;font-size:9.5px;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--accent);white-space:nowrap}
+.field__list em{font-style:normal;font-weight:600;font-size:.9rem;color:var(--heading);line-height:1.35}
+.field__list>span.is-pending i{color:var(--text-faint)}
+.field__list>span.is-pending em{color:var(--text-faint);font-weight:500;font-style:italic}
+@media (min-width:700px){
+  .field--wide .field__list{grid-template-columns:auto auto auto auto;
+    gap:6px clamp(12px,2.2vw,26px);justify-content:start}
+  .field--wide .field__list em{white-space:nowrap}
+}
 
 .contact__tagline{margin-top:clamp(28px,4.4vh,44px);font-family:var(--ff-display);font-style:italic;
   font-size:clamp(1rem,1.5vw,1.18rem);color:var(--text-soft);max-width:44ch}
@@ -188,7 +207,6 @@ a.field:hover{transform:translateY(-4px);background:var(--surface);box-shadow:va
   .pillar__top{clip-path:polygon(0 0,100% 0,100% calc(100% - 14px),calc(100% - 14px) 100%,0 100%)}
   .pathwrap{grid-template-columns:1fr;gap:clamp(24px,4vh,36px)}
   .sums{grid-template-columns:1fr}
-  .fields{grid-template-columns:1fr;max-width:520px;margin-inline:auto}
   .statement{grid-template-columns:1fr;align-items:start;gap:clamp(22px,3.4vh,32px)}
   .statement__side{padding-left:18px}
 }
@@ -213,6 +231,9 @@ a.field:hover{transform:translateY(-4px);background:var(--surface);box-shadow:va
   .stage__dot{width:35px;height:35px}
   .field{padding:15px 17px}
 }
+@media (max-width:640px){
+  .fields{grid-template-columns:minmax(0,1fr);max-width:520px;margin-inline:auto}
+}
 @media (max-width:520px){
   .cover__art{max-height:16vh;aspect-ratio:16/5}
   .contact .lockup{margin-bottom:22px}
@@ -227,5 +248,4 @@ a.field:hover{transform:translateY(-4px);background:var(--surface);box-shadow:va
   .pillars{grid-template-columns:1fr}
   .pathwrap{grid-template-columns:1fr}
   .sums{grid-template-columns:repeat(2,1fr)}
-  .fields{grid-template-columns:repeat(3,1fr);max-width:none}
 }

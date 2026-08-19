@@ -140,17 +140,34 @@
 
     /* ── Contacto ────────────────────────────────────────── */
     contact(s, a, meta) {
+      /* Un dato sin cargar ("[completar]" o un "XXX") se muestra
+         en gris y en cursiva para que se note que falta. */
+      const isPending = (t) => /\[completar\]|XXX/.test(t || '');
+
       const field = (f) => {
-        const pending = /\[completar\]/i.test(f.value || '');
+        const rows = f.values || [];
+        const pending = rows.length
+          ? rows.every((r) => isPending(r.text))
+          : isPending(f.value);
+
+        const body = rows.length
+          ? `<span class="field__list">${rows.map((r) => `
+              <span class="${isPending(r.text) ? 'is-pending' : ''}">
+                <i>${esc(r.tag)}</i><em>${esc(r.text)}</em>
+              </span>`).join('')}</span>`
+          : `<b class="${pending ? 'is-pending' : ''}">${esc(f.value)}</b>`;
+
         const inner = `
           <span class="field__ico">${I.get(f.icon)}</span>
           <span class="field__txt">
             <small>${esc(f.label)}</small>
-            <b class="${pending ? 'is-pending' : ''}">${esc(f.value)}</b>
+            ${body}
           </span>`;
+
+        const cls = 'field' + (rows.length ? ' field--wide' : '');
         return f.href && !pending
-          ? `<a class="field" href="${esc(f.href)}" target="_blank" rel="noopener"${a('scale')}>${inner}</a>`
-          : `<div class="field"${a('scale')}>${inner}</div>`;
+          ? `<a class="${cls}" href="${esc(f.href)}"${a('scale')}>${inner}</a>`
+          : `<div class="${cls}"${a('scale')}>${inner}</div>`;
       };
 
       return `

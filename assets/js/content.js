@@ -5,8 +5,8 @@
       TEXTOS Y DATOS DE CONTACTO. El diseño se adapta solo.
 
    Los textos provienen de la carta de presentación original (PDF).
-   Lo que figura como "[completar]" hay que reemplazarlo por los
-   datos reales antes de publicar.
+   Cualquier dato que quede como "[completar]" o con "XXX" se muestra
+   en gris y en cursiva, para que se note que falta cargarlo.
    =============================================================== */
 
 const DECK = {
@@ -16,7 +16,7 @@ const DECK = {
     monogram:   'FM',
     studio:     'Franco Martínez',
     studioSub:  'Estudio Jurídico',
-    person:     'Franco Agustín Martínez Pandiani',
+    person:     'Franco Agustín Martínez Pisani',
     role:       'Abogado',
     tagline:    'Gestión de siniestros junto a productores asesores de seguros.',
     docTitle:   'Franco Martínez · Estudio Jurídico — Carta de presentación'
@@ -31,7 +31,7 @@ const DECK = {
       nav: 'Portada',
       type: 'cover',
       eyebrow: 'Carta de presentación',
-      name: 'Franco Agustín<br>Martínez Pandiani',
+      name: 'Franco Agustín<br>Martínez Pisani',
       role: 'Abogado',
       tagline: 'Gestión de siniestros junto a productores asesores de seguros.',
       cta:      { label: 'Ver presentación', target: 1 },
@@ -129,18 +129,34 @@ const DECK = {
       nav: 'Contacto',
       type: 'contact',
       kicker: 'Contacto',
-      name: 'Franco Agustín Martínez Pandiani',
+      name: 'Franco Agustín Martínez Pisani',
       role: 'Abogado',
       tagline: 'Gestión de siniestros junto a productores asesores de seguros.',
 
-      /* ⚠️ Reemplazar los "[completar]" por los datos reales.
-         - value : lo que se muestra en pantalla
-         - href  : el enlace (tel:… / mailto:… / https://wa.me/…)
-                   Dejalo en null si todavía no hay dato.          */
+      /* Datos de contacto.
+         - value  : una sola línea de texto
+         - values : varias líneas, cada una con etiqueta (tag) y texto
+         - href   : el enlace (tel:… / mailto:… / https://wa.me/…)
+                    Dejalo en null si el dato no es un enlace.      */
       fields: [
-        { icon: 'phone', label: 'Teléfono',  value: '[completar]', href: null },
-        { icon: 'mail',  label: 'Correo',    value: '[completar]', href: null },
-        { icon: 'badge', label: 'Matrícula', value: '[completar]', href: null }
+        {
+          icon: 'phone', label: 'Teléfono',
+          value: '9 11 3827-7402',
+          href: 'tel:+5491138277402'
+        },
+        {
+          icon: 'mail', label: 'Correo',
+          value: 'F.martinezpisani@gmail.com',
+          href: 'mailto:F.martinezpisani@gmail.com'
+        },
+        {
+          icon: 'badge', label: 'Matrícula',
+          values: [
+            { tag: 'CABA',      text: 'Tomo 157 · Folio 514' },
+            { tag: 'Provincia', text: 'Tomo XXX · Folio 180' }
+          ],
+          href: null
+        }
       ],
       closing: 'Gracias por su tiempo.'
     }

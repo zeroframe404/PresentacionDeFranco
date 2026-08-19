@@ -1,26 +1,23 @@
 # Franco Martínez · Estudio Jurídico — Carta de presentación web
 
 Versión web, interactiva y responsive de la carta de presentación de
-**Franco Agustín Martínez Pandiani**, abogado — gestión de siniestros junto a
+**Franco Agustín Martínez Pisani**, abogado — gestión de siniestros junto a
 productores asesores de seguros.
 
 Sitio estático, sin dependencias ni compilación: se publica tal cual en GitHub Pages.
 
 ---
 
-## 1 · Publicar en GitHub Pages
+## 1 · Publicación
 
-1. En GitHub, entrá a **Settings → Pages**.
-2. En **Build and deployment → Source**, elegí **GitHub Actions**.
-3. Listo. Cada `push` a la rama por defecto publica el sitio automáticamente
-   (workflow: `.github/workflows/deploy.yml`). También se puede lanzar a mano
-   desde **Actions → Publicar en GitHub Pages → Run workflow**.
+GitHub Pages ya está activo. Cada `push` a `main` publica el sitio
+automáticamente (workflow: `.github/workflows/deploy.yml`); también se puede
+lanzar a mano desde **Actions → Publicar en GitHub Pages → Run workflow**.
 
-La URL queda en `https://<usuario>.github.io/<repositorio>/`.
+La URL es `https://zeroframe404.github.io/PresentacionDeFranco/`.
 
-> Alternativa sin Actions: en **Source** elegí *Deploy from a branch* → la rama
-> por defecto, carpeta `/ (root)`. El archivo `.nojekyll` ya está incluido para que Jekyll no
-> interfiera con la carpeta `assets/`.
+> El archivo `.nojekyll` está incluido para que Jekyll no interfiera con la
+> carpeta `assets/`.
 
 ---
 
@@ -29,25 +26,38 @@ La URL queda en `https://<usuario>.github.io/<repositorio>/`.
 **Todo el texto vive en un solo archivo:** [`assets/js/content.js`](assets/js/content.js).
 No hace falta tocar HTML ni CSS.
 
-### Completar los datos de contacto
+### Los datos de contacto
 
-En la última diapositiva hay tres campos marcados como `[completar]`
-(así venían en el PDF original). Buscá el bloque `fields` y reemplazalos:
+Están en el bloque `fields` de la última diapositiva:
 
 ```js
 fields: [
-  { icon: 'phone', label: 'Teléfono',  value: '+54 9 11 1234-5678', href: 'tel:+5491112345678' },
-  { icon: 'mail',  label: 'Correo',    value: 'franco@estudio.com', href: 'mailto:franco@estudio.com' },
-  { icon: 'badge', label: 'Matrícula', value: 'T° 000 F° 000',      href: null }
+  { icon: 'phone', label: 'Teléfono', value: '9 11 3827-7402',
+    href: 'tel:+5491138277402' },
+
+  { icon: 'mail',  label: 'Correo',   value: 'F.martinezpisani@gmail.com',
+    href: 'mailto:F.martinezpisani@gmail.com' },
+
+  { icon: 'badge', label: 'Matrícula', href: null, values: [
+      { tag: 'CABA',      text: 'Tomo 157 · Folio 514' },
+      { tag: 'Provincia', text: 'Tomo XXX · Folio 180' }
+  ]}
 ]
 ```
 
-- `value` es lo que se ve en pantalla.
+- `value` es una sola línea; `values` son varias, cada una con su etiqueta.
 - `href` es el enlace: `tel:`, `mailto:` o `https://wa.me/54911...`.
   Dejalo en `null` si el dato no es un enlace (por ejemplo la matrícula).
-- Mientras diga `[completar]`, el campo se muestra en gris y no es clickeable.
+- Cualquier valor que contenga `[completar]` o `XXX` se muestra en gris y en
+  cursiva, y la tarjeta deja de ser clickeable. Es el caso del tomo de la
+  matrícula de Provincia, que todavía está pendiente.
 
-Para sumar WhatsApp, agregá un cuarto campo con `icon: 'whatsapp'`.
+**Para sumar WhatsApp**, agregá otro campo:
+
+```js
+{ icon: 'whatsapp', label: 'WhatsApp', value: '9 11 3827-7402',
+  href: 'https://wa.me/5491138277402' }
+```
 
 ### Cambiar textos, agregar o quitar diapositivas
 
