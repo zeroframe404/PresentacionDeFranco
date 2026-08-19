@@ -12,13 +12,14 @@ Sitio estático, sin dependencias ni compilación: se publica tal cual en GitHub
 
 1. En GitHub, entrá a **Settings → Pages**.
 2. En **Build and deployment → Source**, elegí **GitHub Actions**.
-3. Listo. Cada `push` a `main` publica el sitio automáticamente
-   (workflow: `.github/workflows/deploy.yml`).
+3. Listo. Cada `push` a la rama por defecto publica el sitio automáticamente
+   (workflow: `.github/workflows/deploy.yml`). También se puede lanzar a mano
+   desde **Actions → Publicar en GitHub Pages → Run workflow**.
 
 La URL queda en `https://<usuario>.github.io/<repositorio>/`.
 
-> Alternativa sin Actions: en **Source** elegí *Deploy from a branch* → rama `main`,
-> carpeta `/ (root)`. El archivo `.nojekyll` ya está incluido para que Jekyll no
+> Alternativa sin Actions: en **Source** elegí *Deploy from a branch* → la rama
+> por defecto, carpeta `/ (root)`. El archivo `.nojekyll` ya está incluido para que Jekyll no
 > interfiera con la carpeta `assets/`.
 
 ---

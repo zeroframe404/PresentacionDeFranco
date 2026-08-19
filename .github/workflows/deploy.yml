@@ -2,7 +2,11 @@ name: Publicar en GitHub Pages
 
 on:
   push:
-    branches: [main]
+    # Esta es hoy la rama por defecto del repositorio.
+    # Si más adelante la renombrás a "main", el workflow sigue andando.
+    branches:
+      - main
+      - claude/web-presentation-animations-7tk2pe
   workflow_dispatch:
 
 permissions:
