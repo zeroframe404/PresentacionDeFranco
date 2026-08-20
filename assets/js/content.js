@@ -4,7 +4,8 @@
    👉 ESTE ES EL ÚNICO ARCHIVO QUE HAY QUE EDITAR PARA CAMBIAR
       TEXTOS Y DATOS DE CONTACTO. El diseño se adapta solo.
 
-   Los textos provienen de la carta de presentación original (PDF).
+   Los textos provienen de la carta de presentación original (PDF),
+   con la redacción llevada a un registro jurídico y formal.
    Cualquier dato que quede como "[completar]" o con "XXX" se muestra
    en gris y en cursiva, para que se note que falta cargarlo.
    =============================================================== */
@@ -31,9 +32,10 @@ const DECK = {
       nav: 'Portada',
       type: 'cover',
       eyebrow: 'Carta de presentación',
-      name: 'Franco Agustín<br>Martínez Pisani',
-      role: 'Abogado',
+      /* Sin "name": la marca FM · Franco Martínez identifica la
+         portada y la bajada pasa a ser el titular. */
       tagline: 'Gestión de siniestros junto a productores asesores de seguros.',
+      role: 'Abogado',
       cta:      { label: 'Ver presentación', target: 1 },
       ctaGhost: { label: 'Contacto',         target: 'contacto' }
     },
@@ -46,23 +48,24 @@ const DECK = {
       num: '01',
       kicker: 'Carta de presentación',
       title: 'Soy abogado y trabajo junto a productores asesores de seguros en la gestión de los siniestros de sus clientes.',
-      text: 'Mi forma de trabajo es directa, con reglas claras desde el inicio y orientada a que el cliente cobre lo antes posible.',
+      text: 'Mi forma de trabajo es directa, con reglas claras desde el inicio y orientada a que el cliente perciba su indemnización a la mayor brevedad posible.',
       tone: 'dark'
     },
 
-    /* ── 02 · Cómo trabajo ───────────────────────────────────── */
+    /* ── 02 · Metodología de trabajo ─────────────────────────── */
     {
       id: 'como-trabajo',
-      nav: 'Cómo trabajo',
+      nav: 'Metodología',
       type: 'process',
       num: '02',
       kicker: 'Carta de presentación',
-      title: 'Cómo trabajo',
+      title: 'Metodología de trabajo',
       steps: [
-        { title: 'Contacto con el productor', text: 'El trato es directo conmigo, de principio a fin.' },
-        { title: 'Derivación de siniestros',  text: 'El productor me pasa los siniestros de sus clientes.' },
-        { title: 'Análisis de viabilidad',    text: 'Reviso cada caso y evalúo si es viable antes de avanzar.' },
-        { title: 'Gestión del reclamo',       text: 'Impulso el reclamo para que el cliente cobre lo antes posible.' }
+        { title: 'Contacto con el productor',   text: 'El productor trata directamente conmigo, de principio a fin.' },
+        { title: 'Derivación de siniestros',    text: 'El productor me deriva los siniestros de sus clientes.' },
+        { title: 'Análisis de viabilidad',      text: 'Examino cada caso y evalúo su viabilidad antes de avanzar.' },
+        { title: 'Gestión del reclamo',         text: 'Impulso el reclamo ante la aseguradora para que el cliente perciba su indemnización.' },
+        { title: 'Comunicación con el cliente', text: 'Mantengo informados al productor y a su cliente sobre el estado del reclamo en cada etapa del proceso.' }
       ]
     },
 
@@ -73,20 +76,20 @@ const DECK = {
       type: 'pillars',
       num: '03',
       kicker: 'Carta de presentación',
-      title: 'Honorarios claros, acordados de antemano',
-      lead: 'Antes de tomar el primer caso acuerdo con el productor qué porcentaje se le cobra al cliente: diez por ciento, veinte por ciento o ninguno, si así lo prefiere.',
+      title: 'Honorarios claros, convenidos de antemano',
+      lead: 'Antes de asumir el primer caso, convengo con el productor el porcentaje que se le cobrará al cliente: diez por ciento, veinte por ciento o ninguno, según su preferencia.',
       items: [
         {
-          title: 'El porcentaje lo define el productor',
-          text: '10 %, 20 % o ningún cargo al cliente: la condición queda pactada antes de empezar.'
+          title: 'El porcentaje lo determina el productor',
+          text: '10 %, 20 % o ningún cargo al cliente: la condición queda pactada antes de iniciar la gestión.'
         },
         {
-          title: 'Ese importe es del productor',
-          text: 'Lo que se le cobra al cliente se lo pago íntegramente al productor. No me quedo con esa plata.'
+          title: 'Ese importe corresponde al productor',
+          text: 'El importe que abona el cliente se le transfiere íntegramente al productor; no retengo suma alguna por ese concepto.'
         },
         {
-          title: 'Mi honorario lo paga la aseguradora',
-          text: 'Mi ingreso proviene exclusivamente de lo que la compañía me abona en forma directa.'
+          title: 'Mis honorarios los abona la aseguradora',
+          text: 'Mi retribución proviene exclusivamente de lo que la compañía me abona en forma directa.'
         }
       ]
     },
@@ -99,12 +102,12 @@ const DECK = {
       num: '04',
       kicker: 'Carta de presentación',
       title: 'Primero, la vía extrajudicial',
-      text: 'Priorizo resolver en instancias extrajudiciales: reclamos directos ante las compañías y mediación. Llevo casos a juicio cuando es necesario, pero no es mi primera opción ni el camino de todos los casos. El objetivo es resolver lo más rápido posible, para que el cliente cobre y quede conforme.',
+      text: 'Priorizo la resolución en instancias extrajudiciales: reclamos directos ante las compañías aseguradoras y mediación. Acudo a la vía judicial cuando resulta necesario, aunque no constituye mi primera opción ni el camino de todos los casos. El objetivo es arribar a una resolución en el menor tiempo posible, de modo que el cliente perciba lo que le corresponde y quede conforme.',
       tone: 'dark',
       stages: [
-        { label: 'Reclamo directo', note: 'Ante la compañía aseguradora', state: 'first'  },
-        { label: 'Mediación',       note: 'Instancia previa al juicio',    state: 'second' },
-        { label: 'Juicio',          note: 'Solo cuando es necesario',      state: 'last'   }
+        { label: 'Reclamo directo', note: 'Presentación ante la compañía aseguradora', state: 'first'  },
+        { label: 'Mediación',       note: 'Instancia previa a la vía judicial',        state: 'second' },
+        { label: 'Vía judicial',    note: 'Únicamente cuando resulta necesario',       state: 'last'   }
       ]
     },
 
@@ -114,12 +117,12 @@ const DECK = {
       nav: 'En resumen',
       type: 'summary',
       kicker: 'En resumen',
-      title: 'Qué podés esperar de este trabajo en conjunto',
+      title: 'Qué puede esperar de este trabajo en conjunto',
       items: [
-        { icon: 'handshake', title: 'Trato directo',                  text: 'Hablás siempre conmigo, de principio a fin.' },
-        { icon: 'scale',     title: 'Reglas claras desde el inicio',  text: 'El porcentaje y las condiciones quedan pactados antes de empezar.' },
-        { icon: 'wallet',    title: 'El cargo al cliente es tuyo',    text: 'Lo que se le cobra al cliente se lo pago íntegramente al productor.' },
-        { icon: 'clock',     title: 'Foco en que el cliente cobre',   text: 'Priorizo la vía extrajudicial para resolver lo antes posible.' }
+        { icon: 'handshake', title: 'Trato directo',                            text: 'La comunicación es siempre conmigo, de principio a fin.' },
+        { icon: 'scale',     title: 'Reglas claras desde el inicio',            text: 'El porcentaje y las condiciones quedan pactados antes de iniciar la gestión.' },
+        { icon: 'wallet',    title: 'El cargo al cliente es del productor',     text: 'El importe que abona el cliente se le transfiere íntegramente al productor.' },
+        { icon: 'clock',     title: 'Percepción oportuna de la indemnización',  text: 'Priorizo la vía extrajudicial para que el cliente perciba lo que le corresponde en el menor tiempo posible.' }
       ]
     },
 
@@ -129,8 +132,8 @@ const DECK = {
       nav: 'Contacto',
       type: 'contact',
       kicker: 'Contacto',
-      name: 'Franco Agustín Martínez Pisani',
-      role: 'Abogado',
+      /* Sin "name" ni "role": la marca y la firma al pie ya
+         identifican al profesional. */
       tagline: 'Gestión de siniestros junto a productores asesores de seguros.',
 
       /* Datos de contacto.

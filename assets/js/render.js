@@ -49,10 +49,12 @@
           <div class="cover__text">
             ${lockup(meta, 'lockup--lg')}
             <span class="kicker kicker--accent"${a('fade')}>${esc(s.eyebrow)}</span>
-            <h1 class="t-hero"${a()}>${s.name}</h1>
+            ${s.name ? `<h1 class="t-hero"${a()}>${s.name}</h1>
             <span class="rule rule--thick"${a('rule')}></span>
-            <p class="cover__tagline"${a()}>${esc(s.tagline)}</p>
-            <span class="cover__role"${a('fade')}>${esc(s.role)}</span>
+            <p class="cover__tagline"${a()}>${esc(s.tagline)}</p>` : `
+            <h1 class="cover__statement"${a()}>${esc(s.tagline)}</h1>
+            <span class="rule rule--thick"${a('rule')}></span>`}
+            ${s.role ? `<span class="cover__role"${a('fade')}>${esc(s.role)}</span>` : ''}
             <div class="cover__cta"${a()}>
               ${s.cta ? `<button class="btn" type="button" data-goto="${esc(s.cta.target)}">${esc(s.cta.label)}${I.arrowRight}</button>` : ''}
               ${s.ctaGhost ? `<button class="btn btn--line" type="button" data-goto="${esc(s.ctaGhost.target)}">${esc(s.ctaGhost.label)}</button>` : ''}
@@ -174,8 +176,8 @@
         <div class="contact">
           ${lockup(meta, 'lockup--lg')}
           <span class="kicker kicker--accent"${a('fade')}>${esc(s.kicker)}</span>
-          <h2 class="t-xl"${a()}>${esc(s.name)}</h2>
-          <span class="contact__role"${a('fade')}>${esc(s.role)}</span>
+          ${s.name ? `<h2 class="t-xl"${a()}>${esc(s.name)}</h2>` : ''}
+          ${s.role ? `<span class="contact__role"${a('fade')}>${esc(s.role)}</span>` : ''}
           <span class="rule rule--thick"${a('rule')}></span>
           <div class="fields">${(s.fields || []).map(field).join('')}</div>
           <p class="contact__tagline"${a()}>${esc(s.tagline)}</p>
