@@ -19,6 +19,27 @@ La URL es `https://zeroframe404.github.io/PresentacionDeFranco/`.
 > El archivo `.nojekyll` está incluido para que Jekyll no interfiera con la
 > carpeta `assets/`.
 
+### El PDF descargable
+
+El botón **PDF** de la barra superior descarga
+`carta-presentacion-franco-martinez.pdf`: una diapositiva por página, en A4
+apaisado y en tema claro. **No hay que mantenerlo a mano**: lo genera el
+propio workflow en cada publicación, abriendo el sitio con Chromium y
+aplicando el CSS de impresión, así que siempre coincide con lo que está
+publicado. Por eso el archivo está en `.gitignore` y no se versiona.
+
+Para generarlo en local:
+
+```bash
+npm install --no-save playwright
+npx playwright install chromium
+node tools/build-pdf.mjs            # o: node tools/build-pdf.mjs otro-nombre.pdf
+```
+
+Si el PDF no está disponible (por ejemplo al abrir `index.html` directamente
+desde el disco), el botón abre el diálogo de impresión, que también permite
+guardar en PDF. El atajo de teclado es <kbd>D</kbd>.
+
 ---
 
 ## 2 · Editar el contenido
@@ -98,6 +119,7 @@ Están definidos en `assets/js/icons.js`.
 | Índice | `O` o `M` | botón ☰ |
 | Pantalla completa | `F` | botón ⛶ |
 | Tema claro / oscuro | `T` | botón ☾ |
+| Descargar en PDF | `D` | botón PDF |
 | Cerrar el índice | `Esc` | tocar fuera |
 
 Cada diapositiva tiene su propia dirección (`.../#/4`), así que se puede
@@ -122,7 +144,9 @@ el contenido se desplaza primero y recién al llegar al borde cambia de diaposit
 - **Accesibilidad**: respeta `prefers-reduced-motion`, navegación completa por
   teclado, foco visible y etiquetas ARIA.
 - **Impresión**: `Ctrl/Cmd + P` exporta la presentación a PDF, una diapositiva
-  por página.
+  por página, igual que el botón de descarga. En papel el numeral grande de
+  sección se convierte en un folio discreto al pie y se ocultan los botones de
+  navegación.
 
 ---
 
@@ -131,12 +155,13 @@ el contenido se desplaza primero y recién al llegar al borde cambia de diaposit
 ```
 index.html
 assets/
-  css/styles.css     tokens de marca, layout, fondo, controles, transiciones
+  css/styles.css     tokens de marca, layout, fondo, controles, impresión
   css/slides.css     estilos de cada tipo de diapositiva
   js/content.js      ← TEXTOS Y DATOS (lo único que hay que editar)
   js/icons.js        set de íconos SVG
   js/render.js       arma el HTML de cada diapositiva
-  js/app.js          motor: navegación, gestos, teclado, tema, índice
+  js/app.js          motor: navegación, gestos, teclado, tema, índice, PDF
+tools/build-pdf.mjs  genera el PDF descargable desde el propio sitio
 .github/workflows/deploy.yml
 ```
 

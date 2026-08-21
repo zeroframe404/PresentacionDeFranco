@@ -181,6 +181,20 @@ body.on-dark .topbar::after{background:linear-gradient(180deg,#13273f 40%,rgba(1
 .iconbtn:active{transform:translateY(0) scale(.93)}
 .iconbtn--ghost{border-color:transparent;background:transparent}
 
+/* Botón de descarga: icono con etiqueta, siempre visible en la barra */
+.iconbtn--wide{display:flex;flex-direction:row;align-items:center;justify-content:center;
+  width:auto;gap:7px;padding:0 13px 0 11px;
+  font-size:11.5px;font-weight:600;letter-spacing:.1em;color:var(--heading)}
+.iconbtn--wide span{line-height:1}
+.iconbtn--wide:hover{background:var(--navy);border-color:var(--navy);color:#fff}
+body.on-dark .iconbtn--wide{color:#fff}
+body.on-dark .iconbtn--wide:hover{background:#fff;border-color:#fff;color:var(--navy)}
+.iconbtn--wide.is-busy{pointer-events:none;opacity:.55}
+@media (max-width:520px){
+  .iconbtn--wide{width:36px;padding:0;gap:0}
+  .iconbtn--wide span{display:none}
+}
+
 /* ── Marca “FM | Franco Martínez” ────────────────────────────── */
 .lockup{display:inline-flex;align-items:center;gap:13px}
 .lockup__mono{font-family:var(--ff-display);font-weight:700;font-size:30px;line-height:1;
@@ -420,14 +434,48 @@ body.overview-open .ov-item{transform:none;opacity:1;transition-delay:calc(var(-
   [data-anim]{transform:none !important}
 }
 
-/* ── Impresión / exportar a PDF ──────────────────────────────── */
+/* ── Impresión y exportación a PDF ───────────────────────────
+   Una diapositiva por página, apaisada, con los fondos de marca.
+   El mismo CSS lo usa Chromium para generar el PDF descargable. */
 @media print{
+  @page{size:297mm 210mm;margin:0}
+
   .backdrop,.topbar,.arrow,.dots,.progress,.hint,.overview,.scrim,.loader{display:none !important}
-  body{overflow:visible;background:#fff}
-  .deck{position:static}
-  .slide{position:static;opacity:1 !important;visibility:visible !important;filter:none !important;
-    transform:none !important;page-break-after:always;min-height:92vh}
-  .slide__inner{max-height:none;overflow:visible;padding:40px}
-  [data-anim]{opacity:1 !important;transform:none !important}
-  .slide__num{opacity:.08 !important;transform:none !important}
+  html,body{height:auto;overflow:visible;background:#fff}
+  body{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+
+  .deck{position:static;display:block;overflow:visible}
+
+  .slide{position:relative;display:flex;overflow:hidden;
+    width:297mm;height:210mm;
+    opacity:1 !important;visibility:visible !important;pointer-events:auto;
+    transform:none !important;filter:none !important;transition:none !important;
+    background:var(--bg);
+    page-break-after:always;break-after:page;page-break-inside:avoid;break-inside:avoid}
+  .slide:last-child{page-break-after:auto;break-after:auto}
+  .slide.is-dark::after{display:none}
+
+  .slide__inner{max-height:none;overflow:visible;
+    padding:16mm 18mm;max-width:none}
+  [data-anim]{opacity:1 !important;transform:none !important;transition:none !important}
+  /* Los botones de navegación no tienen sentido en papel */
+  .cover__cta{display:none !important}
+
+  /* En pantalla el numeral es una marca de agua grande; en papel
+     eso queda tapado por las tarjetas, así que pasa a folio al pie. */
+  .slide__num{transform:none !important;transition:none !important;
+    top:auto;left:auto;right:18mm;bottom:11mm;
+    font-family:var(--ff-body);font-size:9.5pt;font-weight:600;letter-spacing:.2em;
+    line-height:1;opacity:.6 !important}
+  .slide.is-dark .slide__num{opacity:.09 !important}
+
+  /* Un poco más de ancho para el texto de los pasos */
+  .step{padding:14px 16px}
+  .steps{gap:9px}
+  .slide__sign{display:block;opacity:.85 !important;left:18mm;bottom:11mm}
+
+  /* Sin hover ni animación en papel */
+  .stage--first .stage__dot{animation:none;box-shadow:none}
+  .cover__art .shape,.shape__label{opacity:1 !important;transform:none !important}
+  .shape--teal,.shape--ink{transform:skewY(-9deg) !important}
 }

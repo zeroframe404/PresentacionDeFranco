@@ -24,6 +24,7 @@
   const btnClose = $('#btnCloseOverview');
   const btnFull  = $('#btnFull');
   const btnTheme = $('#btnTheme');
+  const btnPdf   = $('#btnPdf');
   const scrim    = $('#scrim');
   const brandEl  = $('#brand');
 
@@ -44,6 +45,7 @@
     brandEl.innerHTML = window.Render.lockup(D.meta, 'lockup--sm');
     totEl.textContent = pad(total);
 
+    btnPdf.insertAdjacentHTML('afterbegin', I.download);
     btnPrev.innerHTML  = I.arrowLeft;
     btnNext.innerHTML  = I.arrowRight;
     btnMenu.innerHTML  = I.menu;
@@ -54,6 +56,7 @@
     buildOverview();
     syncFullIcon();
     syncThemeIcon();
+    checkPdf();
 
     go(readHash(), 1, true);
 
@@ -162,6 +165,57 @@
   }
   const syncFullIcon = () => { btnFull.innerHTML = document.fullscreenElement ? I.collapse : I.expand; };
 
+  /* ══════════════ Descarga en PDF ════════════════════════════
+     El PDF se genera desde este mismo sitio al publicar. Si no está
+     disponible (por ejemplo al abrir el archivo en local), el botón
+     abre el diálogo de impresión, que también permite guardarlo. */
+  let pdfReady = false;
+
+  function checkPdf() {
+    const url = btnPdf.getAttribute('href');
+    /* Con file:// el navegador bloquea el fetch: vamos directo a imprimir. */
+    if (!url || location.protocol === 'file:') return usePrintFallback();
+    fetch(url, { method: 'HEAD' })
+      .then((r) => { r.ok ? (pdfReady = true) : usePrintFallback(); })
+      .catch(usePrintFallback);
+  }
+
+  function usePrintFallback() {
+    pdfReady = false;
+    btnPdf.removeAttribute('href');
+    btnPdf.removeAttribute('download');
+    btnPdf.setAttribute('role', 'button');
+    btnPdf.tabIndex = 0;
+    btnPdf.title = 'Guardar la presentación en PDF (D)';
+  }
+
+  function downloadPdf() {
+    if (pdfReady) { btnPdf.click(); return; }
+    printDeck();
+  }
+
+  /* Al imprimir conviene el tema claro: el PDF va a papel. */
+  function printDeck() {
+    const root = document.documentElement;
+    const prev = root.getAttribute('data-theme');
+    root.setAttribute('data-theme', 'light');
+    btnPdf.classList.add('is-busy');
+    window.setTimeout(() => {
+      window.print();
+      root.setAttribute('data-theme', prev);
+      btnPdf.classList.remove('is-busy');
+    }, 60);
+  }
+
+  btnPdf.addEventListener('click', (e) => {
+    if (pdfReady) return;          // enlace real: lo maneja el navegador
+    e.preventDefault();
+    printDeck();
+  });
+  btnPdf.addEventListener('keydown', (e) => {
+    if (!pdfReady && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); printDeck(); }
+  });
+
   /* ══════════════ Tema ═══════════════════════════════════════ */
   function toggleTheme() {
     const now = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
@@ -218,6 +272,7 @@
         else if (e.key === 'f' || e.key === 'F') toggleFull();
         else if (e.key === 'o' || e.key === 'O' || e.key === 'm' || e.key === 'M') overview();
         else if (e.key === 't' || e.key === 'T') toggleTheme();
+        else if (e.key === 'd' || e.key === 'D') downloadPdf();
     }
   });
 

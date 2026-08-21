@@ -23,6 +23,25 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      # El PDF descargable se genera desde el propio sitio en cada
+      # publicación, así nunca queda desfasado del contenido.
+      - name: Generar el PDF descargable
+        run: |
+          npm install --no-save --no-audit --no-fund playwright@1.49.1
+          npx playwright install --with-deps chromium
+          node tools/build-pdf.mjs
+
+      - name: Comprobar que el PDF se generó
+        run: test -s carta-presentacion-franco-martinez.pdf
+
+      # Las dependencias de generación no forman parte del sitio.
+      - name: Quitar las dependencias del artefacto
+        run: rm -rf node_modules package-lock.json
+
       - uses: actions/configure-pages@v5
 
       - name: Subir el sitio (raíz del repositorio)
