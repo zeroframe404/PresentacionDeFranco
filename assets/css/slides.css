@@ -98,6 +98,12 @@ html[data-theme="dark"] .shape--navy{
 .slide.is-dark .pillar__body{background:rgba(255,255,255,.06)}
 .pillar:hover .pillar__body{background:var(--surface);box-shadow:var(--shadow)}
 .pillar__body p{font-size:.93rem;color:var(--text-soft);line-height:1.68}
+/* Cabeceras navy a la misma altura aunque un título ocupe dos líneas.
+   Sin subgrid cada tarjeta conserva el apilado flex de arriba. */
+@supports (grid-template-rows:subgrid){
+  .pillars{grid-template-rows:auto 1fr}
+  .pillar{display:grid;grid-row:span 2;grid-template-rows:subgrid}
+}
 
 /* ═══ RECORRIDO (vía extrajudicial) ══════════════════════════ */
 .pathwrap{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(30px,5vw,72px);align-items:center;width:100%}

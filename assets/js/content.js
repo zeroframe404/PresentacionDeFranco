@@ -77,19 +77,19 @@ const DECK = {
       num: '03',
       kicker: 'Carta de presentación',
       title: 'Honorarios claros, convenidos de antemano',
-      lead: 'Antes de asumir el primer caso, convengo con el productor el porcentaje que se le cobrará al cliente: diez por ciento, veinte por ciento o ninguno, según su preferencia.',
+      lead: 'Las condiciones quedan convenidas con el productor antes de asumir el primer caso y dependen del tipo de siniestro.',
       items: [
         {
-          title: 'El porcentaje lo determina el productor',
-          text: '10 %, 20 % o ningún cargo al cliente: la condición queda pactada antes de iniciar la gestión.'
+          title: 'Sin monto mínimo para reclamar',
+          text: 'No exijo una cuantía mínima: todo siniestro derivado se analiza, cualquiera sea el monto del reclamo.'
         },
         {
-          title: 'Ese importe corresponde al productor',
-          text: 'El importe que abona el cliente se le transfiere íntegramente al productor; no retengo suma alguna por ese concepto.'
+          title: 'Con lesiones: cargo fijo del 20 %',
+          text: 'En los siniestros con lesiones, el cargo al cliente es siempre del veinte por ciento: diez por ciento corresponde al productor y diez por ciento a mis honorarios profesionales.'
         },
         {
-          title: 'Mis honorarios los abona la aseguradora',
-          text: 'Mi retribución proviene exclusivamente de lo que la compañía me abona en forma directa.'
+          title: 'Sin lesiones: lo determina el productor',
+          text: 'En los siniestros sin lesiones —únicamente daños materiales—, el porcentaje a cargo del cliente lo determina el productor y le corresponde íntegramente.'
         }
       ]
     },
@@ -121,7 +121,7 @@ const DECK = {
       items: [
         { icon: 'handshake', title: 'Trato directo',                            text: 'La comunicación es siempre conmigo, de principio a fin.' },
         { icon: 'scale',     title: 'Reglas claras desde el inicio',            text: 'El porcentaje y las condiciones quedan pactados antes de iniciar la gestión.' },
-        { icon: 'wallet',    title: 'El cargo al cliente es del productor',     text: 'El importe que abona el cliente se le transfiere íntegramente al productor.' },
+        { icon: 'wallet',    title: 'Honorarios según el tipo de siniestro',    text: 'Con lesiones, cargo fijo del 20 % —10 % para el productor y 10 % de honorarios—; sin lesiones, lo determina el productor.' },
         { icon: 'clock',     title: 'Percepción oportuna de la indemnización',  text: 'Priorizo la vía extrajudicial para que el cliente perciba lo que le corresponde en el menor tiempo posible.' }
       ]
     },
